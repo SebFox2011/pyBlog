@@ -29,7 +29,7 @@ def blog():
 
 @app.route('/blog/post/add', methods=["GET", "POST"])
 def addPost():
-    return render_template('index.html')
+    return render_template('addPostForm.html')
 
 
 @app.route('/blog/post/edit')
@@ -44,7 +44,7 @@ def deletePost():
 
 @app.route('/blog/comment/add',methods=["GET", "POST"])
 def addComment():
-    return render_template('index.html')
+    return render_template('addMessageForm.html')
 
 
 @app.route('/blog/comment/edit')
