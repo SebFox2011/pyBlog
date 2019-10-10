@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1 class="expanded">Articles du blog</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col-lg">Id</th>
+            <th scope="col-lg">Titre</th>
+            <th scope="col-lg">Contenu</th>
+            <th scope="col-lg">Date de création</th>
+            <th scope="col-lg">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in liste %}
+            <tr>
+                <td>{{ item.post.id }}</td>
+                <td>{{ item.post.title }}</td>
+                <td>{{ item.post.content }}</td>
+                <td>{{ item.post.created_at }}</td>
+                <td>
+                    <a class="btn btn-danger" href="blog/post/delete/{{ item.post.id }}">Supprimer</a>
+                    <a class="btn btn-warning" href="blog/post/edit/{{ item.post.id }}">Modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="blog/post/add">Ajouter une entrée</a>
+</div>
+<hr>
+<div class="container">
+    <h1>Liste des messages</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col-lg">Id</th>
+            <th scope="col-lg">Nom</th>
+            <th scope="col-lg">Contenu</th>
+            <th scope="col-lg">Date de création</th>
+            <th scope="col-lg">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in orders %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.name }}</td>
+                <td>{{ item.content }}</td>
+                <td>{{ item.created_at }}</td>
+                <td>
+                    <a class="btn btn-danger" href="blog/comment/delete/{{ item.id }}">Supprimer</a>
+                    <a class="btn btn-warning" href="blog/comment/edit/{{ item.id }}">Modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="blog/comment/add">Ajouter une entrée</a>
+</div>
+</body>
+</html>

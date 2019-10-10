@@ -11,14 +11,51 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
 ##pour flask-migrate
-migrate = Migrate(app,db)
+migrate = Migrate(app, db)
 
 from classes.post import Post
 from classes.comment import Comment
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+
+@app.route('/blog/post/add')
+def addPost():
+    return render_template('index.html')
+
+
+@app.route('/blog/post/edit')
+def editPost():
+    return render_template('index.html')
+
+
+@app.route('/blog/post/delete')
+def deletePost():
+    return render_template('index.html')
+
+
+@app.route('/blog/comment/add')
+def addBlog():
+    return render_template('index.html')
+
+
+@app.route('/blog/comment/edit')
+def editBlog():
+    return render_template('index.html')
+
+
+@app.route('/blog/comment/delete')
+def deleteBlog():
+    return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run()
