@@ -1,5 +1,6 @@
 # Projet Python de Blog
-# Python TP Autonomie :
+
+## Sujet Python TP Autonomie :
 Création d'un blog simple en Python avec Flask. N'hésitez pas à mettre du joli CSS 😀
 
 1. Créez une application Flask vide avec une simple route vers « / » qui affiche un template html simple.
@@ -29,6 +30,14 @@ flask db upgrade
 
 ## Méthodologie,
 
-dans app cré
+Dans app, mettre les informations pour créer la bdd, créer ensuite les modèles de classes d'objet qui seront mis dans la bdd
+Créer ensuite les routes dans le fichier app puis enfin les vues html
 
 Créer ensuite les classes d'objets pour que populer la base de données
+
+## pour redistribuer l'applicaiton
+
+pip freeze > requirements.txt
+
+permet d'envoyer au fichier texte les librairies dépendantes au projet.
+
