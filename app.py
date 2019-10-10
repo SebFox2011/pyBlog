@@ -27,7 +27,7 @@ def blog():
     return render_template('blog.html')
 
 
-@app.route('/blog/post/add')
+@app.route('/blog/post/add', methods=["GET", "POST"])
 def addPost():
     return render_template('index.html')
 
@@ -42,18 +42,18 @@ def deletePost():
     return render_template('index.html')
 
 
-@app.route('/blog/comment/add')
-def addBlog():
+@app.route('/blog/comment/add',methods=["GET", "POST"])
+def addComment():
     return render_template('index.html')
 
 
 @app.route('/blog/comment/edit')
-def editBlog():
+def editComment():
     return render_template('index.html')
 
 
 @app.route('/blog/comment/delete')
-def deleteBlog():
+def deleteComment():
     return render_template('index.html')
 
 
