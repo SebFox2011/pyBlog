@@ -9,6 +9,7 @@ class Post(db.Model):
     title = db.Column(db.String(80), nullable=False)
     content = db.Column(db.String(120), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    comments = db.relationship('Comment', backref='Post', lazy=True)
 
     def update(self, values):
         self.title = values['postTitle']

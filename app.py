@@ -24,12 +24,26 @@ def index():
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')
-
+    posts = Post.query.all()
+    comments = Comment.query.all()
+    return render_template('blog.html', posts=posts, comments=comments)
+    #return render_template('blog.html')
 
 @app.route('/blog/post/add', methods=["GET", "POST"])
 def addPost():
-    return render_template('addPostForm.html')
+    if request.method == 'GET':
+        # show create form
+        return render_template('addPostForm.html')
+    else:
+        # create post
+        title = request.form['postTitle']
+        content = request.form['postContent']
+        # Création du post
+        post = Post(title=title, content=content)
+        db.session.add(post)
+        db.session.commit()
+
+        return redirect(url_for('blog'))
 
 
 @app.route('/blog/post/edit')
@@ -42,9 +56,21 @@ def deletePost():
     return render_template('index.html')
 
 
-@app.route('/blog/comment/add',methods=["GET", "POST"])
-def addComment():
-    return render_template('addMessageForm.html')
+@app.route('/blog/comment/add/<id>', methods=["GET", "POST"])
+def addComment(id):
+    if request.method == 'GET':
+        # show create form
+        return render_template('addMessageForm.html')
+    else:
+        # create post
+        name = request.form['messageName']
+        content = request.form['messageContent']
+        # Création du post
+        comment = Comment(name=name, content=content,post_id=id)
+        db.session.add(comment)
+        db.session.commit()
+
+        return redirect(url_for('blog'))
 
 
 @app.route('/blog/comment/edit')

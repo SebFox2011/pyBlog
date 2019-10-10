@@ -20,15 +20,16 @@
         </tr>
         </thead>
         <tbody>
-        {% for item in liste %}
+        {% for item in posts %}
             <tr>
-                <td>{{ item.post.id }}</td>
-                <td>{{ item.post.title }}</td>
-                <td>{{ item.post.content }}</td>
-                <td>{{ item.post.created_at }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.content }}</td>
+                <td>{{ item.created_at }}</td>
                 <td>
-                    <a class="btn btn-danger" href="blog/post/delete/{{ item.post.id }}">Supprimer</a>
-                    <a class="btn btn-warning" href="blog/post/edit/{{ item.post.id }}">Modifier</a>
+                    <a class="btn btn-danger" href="blog/post/delete/{{ item.id }}">Supprimer</a>
+                    <a class="btn btn-warning" href="blog/post/edit/{{ item.id }}">Modifier</a>
+                    <a class="btn btn-success" href="/blog/comment/add/{{ item.id }}">+ Commentaire</a>
                 </td>
             </tr>
         {% endfor %}
@@ -43,6 +44,7 @@
         <thead>
         <tr>
             <th scope="col-lg">Id</th>
+            <th scope="col-lg">PostId</th>
             <th scope="col-lg">Nom</th>
             <th scope="col-lg">Contenu</th>
             <th scope="col-lg">Date de création</th>
@@ -50,10 +52,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for item in orders %}
+        {% for item in comments %}
             <tr>
-                <td>{{ comment.id }}</td>
-                <td>{{ comment.name }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.post_id }}</td>
+                <td>{{ item.name }}</td>
                 <td>{{ item.content }}</td>
                 <td>{{ item.created_at }}</td>
                 <td>
@@ -64,7 +67,6 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-primary" href="/blog/comment/add">Ajouter une entrée</a>
 </div>
 </body>
 </html>
