@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.secret_key = 'clésecrete' # clé secrete pour la sessions
 ## création de la base données
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
@@ -18,10 +19,12 @@ from classes.comment import Comment
 from classes.user import User
 from blueprints.post_blueprint import bp_post
 from blueprints.comment_blueprint import bp_comment
+from blueprints.auth_blueprint import bp_auth
 
 # enregistre les blueprint route dans add
 app.register_blueprint(bp_post)
 app.register_blueprint(bp_comment)
+app.register_blueprint(bp_auth)
 
 @app.route('/')
 def index():
