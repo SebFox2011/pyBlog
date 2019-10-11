@@ -5,7 +5,6 @@ from flask import redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-
 app = Flask(__name__)
 ## création de la base données
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -16,6 +15,7 @@ migrate = Migrate(app, db)
 
 from classes.post import Post
 from classes.comment import Comment
+from classes.user import User
 from blueprints.post_blueprint import bp_post
 from blueprints.comment_blueprint import bp_comment
 
