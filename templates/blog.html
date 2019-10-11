@@ -9,6 +9,12 @@
 <body>
 <div class="container">
     <h1 class="expanded">Articles du blog</h1>
+    {% if g.user %}
+        <a href="/auth/logout">Se déconnecter</a>
+    {% else %}
+`       <a href="/auth/login">Se connecter</a>
+        <a href="/auth/register">S'enregistrer</a>
+    {% endif %}
     <table class="table table-striped">
         <thead>
         <tr>
@@ -35,7 +41,9 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-primary" href="/blog/post/add">Ajouter une entrée</a>
+    {% if g.user %}
+        <a class="btn btn-primary" href="/blog/post/add">Ajouter une entrée</a>
+    {% endif %}
 </div>
 <hr>
 <div class="container">
