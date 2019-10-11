@@ -25,7 +25,7 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.title }}</td>
                 <td>{{ item.content }}</td>
-                <td>{{ item.created_at }}</td>
+                <td>{{ item.created_at.strftime('%d %b %Y') }}</td>
                 <td>
                     <a class="btn btn-danger" href="blog/post/delete/{{ item.id }}">Supprimer</a>
                     <a class="btn btn-warning" href="blog/post/edit/{{ item.id }}">Modifier</a>

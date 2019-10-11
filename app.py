@@ -46,10 +46,10 @@ def addPost():
         return redirect(url_for('blog'))
 
 
-@app.route('/blog/post/edit/<id>', methods=["GET", "POST"])
+@app.route('/blog/post/edit/<int:id>', methods=["GET", "POST"])
 def editPost(id):
     # Récupération du post
-    post = Post.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
 
     if request.method == 'GET':
         return render_template('editPostForm.html', post=post)
@@ -60,17 +60,18 @@ def editPost(id):
         return redirect(url_for('blog'))
 
 
-@app.route('/blog/post/delete/<id>')
+@app.route('/blog/post/delete/<int:id>')
 def deletePost(id):
-    post = Post.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     ##comment = Comment.query.filter_(post_id=id).all()
+    db.session.execute("pragma foreign_keys=on ")# permet d'activer les clés étrangères
     db.session.delete(post)
     ##db.session.delete(comment)
     db.session.commit()
     return render_template('index.html')
 
 
-@app.route('/blog/comment/add/<id>', methods=["GET", "POST"])
+@app.route('/blog/comment/add/<int:id>', methods=["GET", "POST"])
 def addComment(id):
     if request.method == 'GET':
         # show create form
@@ -87,10 +88,10 @@ def addComment(id):
         return redirect(url_for('blog'))
 
 
-@app.route('/blog/comment/edit/<id>', methods=["GET", "POST"])
+@app.route('/blog/comment/edit/<int:id>', methods=["GET", "POST"])
 def editComment(id):
     # Récupération du post
-    comment = Comment.query.filter_by(id=id).first()
+    comment = Comment.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
 
     if request.method == 'GET':
         return render_template('editMessageForm.html', comment=comment)
@@ -101,9 +102,9 @@ def editComment(id):
         return redirect(url_for('blog'))
 
 
-@app.route('/blog/comment/delete/<id>')
+@app.route('/blog/comment/delete/<int:id>')
 def deleteComment(id):
-    comment = Comment.query.filter_by(id=id).first()
+    comment = Comment.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     db.session.delete(comment)
     db.session.commit()
     return render_template('index.html')

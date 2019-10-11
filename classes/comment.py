@@ -10,8 +10,8 @@ class Comment(db.Model):
     content = db.Column(db.String(120), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
 
-    def update(self, values):
-        self.name = values['messageName']
-        self.content = values['messageContent']
-        self.created_at = values['messageCreatedAt']
+    def update(self, form):
+        self.name = form['messageName']
+        self.content = form['messageContent']
+        #self.created_at = datetime.utcnow() # pour mettre une nouvelle date à la modification
         db.session.commit()
