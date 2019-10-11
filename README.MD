@@ -41,3 +41,7 @@ pip freeze > requirements.txt
 
 permet d'envoyer au fichier texte les librairies dépendantes au projet.
 
+## installation de blue_print
+
+
+
