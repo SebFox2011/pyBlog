@@ -2,9 +2,9 @@ from flask import Blueprint, redirect, render_template, request, url_for
 from app import db
 from classes.post import Post
 
-bp = Blueprint('posts', __name__, url_prefix='/blog/post')
+bp_post = Blueprint('posts', __name__, url_prefix='/blog/post')
 
-@bp.route('/add', methods=["GET", "POST"])
+@bp_post.route('/add', methods=["GET", "POST"])
 def addPost():
     if request.method == 'GET':
         # show create form
@@ -21,7 +21,7 @@ def addPost():
         return redirect(url_for('blog'))
 
 
-@bp.route('/edit/<int:id>', methods=["GET", "POST"])
+@bp_post.route('/edit/<int:id>', methods=["GET", "POST"])
 def editPost(id):
     # Récupération du post
     post = Post.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
@@ -35,7 +35,7 @@ def editPost(id):
         return redirect(url_for('blog'))
 
 
-@bp.route('/delete/<int:id>')
+@bp_post.route('/delete/<int:id>')
 def deletePost(id):
     post = Post.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     ##comment = Comment.query.filter_(post_id=id).all()

@@ -16,11 +16,12 @@ migrate = Migrate(app, db)
 
 from classes.post import Post
 from classes.comment import Comment
-from blueprints.post_blueprint import bp
-from blueprints.comment_blueprint import bp
+from blueprints.post_blueprint import bp_post
+from blueprints.comment_blueprint import bp_comment
 
 # enregistre les blueprint route dans add
-app.register_blueprint(bp)
+app.register_blueprint(bp_post)
+app.register_blueprint(bp_comment)
 
 @app.route('/')
 def index():

@@ -2,9 +2,9 @@ from flask import Blueprint, redirect, render_template, request, url_for
 from app import db
 from classes.comment import Comment
 
-bp = Blueprint('comments', __name__, url_prefix='/blog/comment')
+bp_comment = Blueprint('comments', __name__, url_prefix='/blog/comment')
 
-@bp.route('/add/<int:id>', methods=["GET", "POST"])
+@bp_comment.route('/add/<int:id>', methods=["GET", "POST"])
 def addComment(id):
     if request.method == 'GET':
         # show create form
@@ -21,7 +21,7 @@ def addComment(id):
         return redirect(url_for('blog'))
 
 
-@bp.route('/edit/<int:id>', methods=["GET", "POST"])
+@bp_comment.route('/edit/<int:id>', methods=["GET", "POST"])
 def editComment(id):
     # Récupération du post
     comment = Comment.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
@@ -35,7 +35,7 @@ def editComment(id):
         return redirect(url_for('blog'))
 
 
-@bp.route('/delete/<int:id>')
+@bp_comment.route('/delete/<int:id>')
 def deleteComment(id):
     comment = Comment.query.filter_by(id=id).first_or_404()# si jamais l'id n'existe pas
     db.session.delete(comment)

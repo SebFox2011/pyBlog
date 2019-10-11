@@ -41,7 +41,11 @@ pip freeze > requirements.txt
 
 permet d'envoyer au fichier texte les librairies dépendantes au projet.
 
-## installation de blue_print
+## Configuration de blue_print
+créer de nouveaux fichier, importer  Blueprint, redirect, render_template, request, url_for
+db et la classe objet
 
+Définir le préfix:
+bp_comment = Blueprint('comments', __name__, url_prefix='/blog/comment')
 
 
