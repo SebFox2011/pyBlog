@@ -49,3 +49,16 @@ Définir le préfix:
 bp_comment = Blueprint('comments', __name__, url_prefix='/blog/comment')
 
 
+## Appel des api
+
+pip install requests,json
+
+import json
+
+response = response.get('api_url')
+content = json.load(response.text)
+return jsonify(content)
+
+for item in content:
+    Post.create(item)
+return jsonify(content)
