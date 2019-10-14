@@ -15,3 +15,12 @@ class Comment(db.Model):
         self.content = form['messageContent']
         #self.created_at = datetime.utcnow() # pour mettre une nouvelle date à la modification
         db.session.commit()
+
+    def serialize(self):
+        # création d'un dictionnaire pour l'objet
+        return {
+            'id': self.id,
+            'name': self.name,
+            'content': self.content,
+            'created_at': self.created_at.strftime('%d/%m/%Y')
+        }

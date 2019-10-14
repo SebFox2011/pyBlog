@@ -20,11 +20,13 @@ from classes.user import User
 from blueprints.post_blueprint import bp_post
 from blueprints.comment_blueprint import bp_comment
 from blueprints.auth_blueprint import bp_auth
+from blueprints.api_blueprint import bp_api
 
 # enregistre les blueprint route dans add
 app.register_blueprint(bp_post)
 app.register_blueprint(bp_comment)
 app.register_blueprint(bp_auth)
+app.register_blueprint(bp_api)
 
 @app.route('/')
 def index():

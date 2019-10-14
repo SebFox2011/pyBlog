@@ -44,3 +44,4 @@ def deletePost(id):
     ##db.session.delete(comment)
     db.session.commit()
     return render_template('index.html')
+

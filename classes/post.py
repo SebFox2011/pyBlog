@@ -1,6 +1,7 @@
 from app import db
 from datetime import datetime
 from classes.comment import Comment
+from flask import jsonify
 
 
 class Post(db.Model):
@@ -18,3 +19,18 @@ class Post(db.Model):
         self.content = form['postContent']
         #self.created_at = datetime.utcnow() # pour mettre une nouvelle date à la modification
         db.session.commit()
+
+    def serialize (self):
+        commentList = []
+        comments = Comment.query.all()
+
+        for comment in comments:
+            commentList.append(comment.serialize())
+        # création d'un dictionnaire pour l'objet
+        return {
+            'id':self.id,
+            'title':self.title,
+            'content':self.content,
+            'comments':commentList,
+            'created_at':self.created_at.strftime('%d/%m/%Y')
+        }
