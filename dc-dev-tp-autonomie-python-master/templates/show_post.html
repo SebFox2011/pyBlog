@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog - {{ post.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <h6 class="">Créé le {{ post.created_at.strftime('%d %b %Y') }}</h6>
+        <div class="row mt-2">
+        <a href="/">Retour à l'index</a>&nbsp;/&nbsp;<a href="/posts/edit/{{ post.id }}">Modifier l'article</a>
+        </div>
+        <div class="post_body mt-5 mb-5">
+            {{ post.body }}
+        </div>
+        <div class="mt-4 row justify-content-center">
+                <div class="col-8">
+        <h4>
+            Commentaires :
+        </h4>
+
+        {% for comment in post.comments %}
+        <div>
+            
+        <span>{{ comment.author_name }} : </span>{{ comment.content }}
+        <hr/>
+        </div>
+        {% endfor %}
+        
+        <h4>Ajouter un commentaire</h4>
+        
+        <form method="post" action="/comments">
+            <input type="hidden" name="post_id" value="{{ post.id }}"/>
+            <div class="form-group row">
+                <label class="col-4 col-form-label" for="author">Auteur</label>
+                <div class="col-8">
+                    <input id="author" name="author" placeholder="Votre nom" type="text" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="content" class="col-4 col-form-label">Contenu</label>
+                <div class="col-8">
+                    <textarea id="content" name="content" class="form-control" required="required"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-primary">Commenter</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
